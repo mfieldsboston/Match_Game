@@ -99,7 +99,31 @@ MatchGame.flipCard = function($card, $game) {
   flippedCards.push($card);
 
   if (flippedCards.length === 2) {
-    console.log('eureka!');
+    //console.log('eureka!');
+
+    if (flippedCards[0].data('value') === flippedCards[1].data('value')) {
+      //console.log('eureka!!!!!!');
+      var matchColors = {
+        backgroundColor: 'rgb(153, 153, 153)',
+        color: 'rgb(204, 204, 204)'
+      };
+      flippedCards[0].css(matchColors);
+      flippedCards[1].css(matchColors);
+    }
+    else {
+      var firstFlipped = flippedCards[0];
+      var secondFlipped = flippedCards[1];
+      window.setTimeout(function() {
+        firstFlipped.css('background-color', 'rgb(32, 64, 86)')
+            .text('')
+            .data('isFlipped', false);
+        secondFlipped.css('background-color', 'rgb(32, 64, 86)')
+            .text('')
+            .data('isFlipped', false);
+      }, 350);
+    }
+    $game.data('flippedCards', []);
+
   }
-  
+
 };
